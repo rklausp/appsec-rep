@@ -39,7 +39,7 @@ public class SenhaController {
         Usuario usuario = usuarioRepository.findByEmail(email);
 
         if (usuario == null) {
-            throw new UsernameNotFoundException("Usuário com e-mail " + email + " não encontrado");
+            throw new UsernameNotFoundException("E-mail não encontrado");
         }
 
         String token = generateToken(usuario);
@@ -48,9 +48,9 @@ public class SenhaController {
 
         usuarioRepository.save(usuario);
 
-        String body = "Para recuperar sua senha, acesse o seguinte link: http://localhost:3000/recuperar-senha?token=" + token;
+        String body = "Para recuperar sua senha, acesse o seguinte link: http://localhost:3000/recuperar-senha e digite o token: " + token;
 
-        emailService.enviar(email, "Recuperação de senha", body);
+        emailService.enviar(email, body);
     }
 
     @Secured("IS_AUTHENTICATED_ANONYMOUSLY")

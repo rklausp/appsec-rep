@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../api/create_user.api";
+import { useToastr } from "../../hooks/use-toastr.hook";
 
 export function CadastroScreen() {
   const [formInput, setFormInput] = useState({
@@ -11,6 +12,7 @@ export function CadastroScreen() {
     foto: "",
   });
   const navigate = useNavigate();
+  const showToastr = useToastr();
 
 
   function handleChange(event) {
@@ -30,8 +32,10 @@ export function CadastroScreen() {
         telefone: formInput.telefone,
         foto: formInput.foto,
       });
+      showToastr("Usuario criado com sucesso")
+      navigate("/")
     } catch (error) {
-      console.log(error?.response?.data?.message);
+      showToastr("Erro ao criar usuarip")
     }
   }
 

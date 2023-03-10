@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { newpassword } from "../../api/new_password";
 import useGlobalUser from "../../context/user.context";
+import { useToastr } from "../../hooks/use-toastr.hook";
 
 export function NovaSenhaScreen(){
 
     const [formInput, setFormInput] = useState({ email: "" });
     const navigate = useNavigate();
     const [user, setUser] = useGlobalUser();
+    const showToastr = useToastr();
   
     function handleChange(event) {
       const { name, value } = event.target;
@@ -22,16 +24,13 @@ export function NovaSenhaScreen(){
           email: formInput.email,
         });
         setUser(user);
+        showToastr("Verifique sua caixa de email!")
+        navigate("/")
       } catch (error) {
-        console.log(error);
+        showToastr("Erro ao enviar email!");
       }
     }
   
-    useEffect(() => {
-      if (user) {
-        navigate("/login");
-      }
-    }, [user]);
   
     return (
       <div className="incluir-box">

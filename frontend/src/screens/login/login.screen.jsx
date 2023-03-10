@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../api/login.api";
 import useGlobalUser from "../../context/user.context";
+import { useToastr } from "../../hooks/use-toastr.hook";
 
 export function LoginScreen() {
   const [formInput, setFormInput] = useState({ email: "", senha: "" });
   const navigate = useNavigate();
   const [user, setUser] = useGlobalUser();
+  const showToastr = useToastr();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -23,7 +25,7 @@ export function LoginScreen() {
       });
       setUser(user);
     } catch (error) {
-      console.log(error);
+      showToastr("Erro ao fazer login!");
     }
   }
 

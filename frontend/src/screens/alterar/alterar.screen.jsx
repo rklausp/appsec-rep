@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate  } from "react-router-dom";
 import { putAlterUser } from "../../api/alter_user";
+import { useToastr } from "../../hooks/use-toastr.hook";
 
 
 
@@ -13,6 +14,7 @@ export function AlterUserScreen() {
     foto: ""
   });
   const navigate = useNavigate();
+  const showToastr = useToastr();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -31,8 +33,10 @@ export function AlterUserScreen() {
         senha: formInput.senha,
         email: formInput.email,
       });
+      showToastr("Usuario alterado com sucesso")
+      navigate("/perfil")
     } catch (error) {
-      console.log(error?.response?.data?.message);
+      showToastr("Erro ao alterar usuario")
     }
   }
 

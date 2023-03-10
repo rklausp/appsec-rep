@@ -7,6 +7,7 @@ import br.com.cwi.loginapp.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import static br.com.cwi.loginapp.mapper.UsuarioMapper.toEntity;
 import static br.com.cwi.loginapp.mapper.UsuarioMapper.toResponse;
@@ -20,6 +21,7 @@ public class IncluirUsuarioService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Transactional
     public UsuarioResponse incluir(UsuarioRequest request) {
 
         Usuario usuario = toEntity(request);

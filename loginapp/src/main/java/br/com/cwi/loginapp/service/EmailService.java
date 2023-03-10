@@ -9,6 +9,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
@@ -17,12 +18,14 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public EmailResponse enviar(String request, String assunto, String texto){
+
+    @Transactional
+    public EmailResponse enviar(String request, String texto){
         try{
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("enviaemailappsec@gmail.com");
+            message.setFrom("${USER_EMAIL}");
             message.setTo(request);
-            message.setSubject(assunto);
+            message.setSubject("Recuperacao de senha");
             message.setText(texto);
             javaMailSender.send(message);
         } catch (MailException e){

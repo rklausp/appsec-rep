@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TokenUtils {
@@ -18,6 +19,7 @@ public class TokenUtils {
 
     private static final String SECRET = "mySecret"; // chave secreta para assinar o token
 
+    @Transactional
     public static String generateToken(Usuario user) {
         String token = Jwts.builder()
                 .setSubject(user.getEmail())
@@ -26,7 +28,8 @@ public class TokenUtils {
         return token;
     }
 
-    public void resetarSenha(String token, String novaSenha) {
+    @Transactional
+    public void     resetarSenha(String token, String novaSenha) {
         Usuario usuario = usuarioRepository.findByTokenResetarSenha(token);
 
         if (usuario == null) {

@@ -6,6 +6,7 @@ import { AlterUserScreen } from "../screens/alterar/alterar.screen";
 
 import { PrivateRoute } from "./private-route.component";
 import { NovaSenhaScreen } from "../screens/novasenha/novasenha.screen";
+import { MudarSenhaScreen } from "../screens/mudarsenha/mudarsenha.screen";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
   {
     path: "/novasenha",
     element: <NovaSenhaScreen />
+  },
+  {
+    path: "/recuperar-senha",
+    element: <MudarSenhaScreen />
   },
   {
     path: "/perfil",
