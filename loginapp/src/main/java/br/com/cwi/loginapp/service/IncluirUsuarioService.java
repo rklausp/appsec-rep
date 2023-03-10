@@ -29,4 +29,8 @@ public class IncluirUsuarioService {
 
         return toResponse(usuario);
     }
+
+    public String getSenhaCriptografada(String novaSenha) {
+        return passwordEncoder.encode(novaSenha);
+    }
 }

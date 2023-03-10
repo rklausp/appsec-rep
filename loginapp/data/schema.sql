@@ -7,7 +7,8 @@ CREATE TABLE usuario (
   funcao VARCHAR(100) NOT NULL,
   foto VARCHAR(512) NOT NULL,
   criado_em TIMESTAMP NOT NULL,
-  atualizado_em TIMESTAMP 
+  atualizado_em TIMESTAMP,
+  token_resetar_senha VARCHAR(512)
 );
 
 ALTER TABLE usuario ADD CONSTRAINT pk_usuario PRIMARY KEY (id);
