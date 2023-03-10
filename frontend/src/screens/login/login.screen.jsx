@@ -61,6 +61,9 @@ export function LoginScreen() {
       <Link to={"/cadastro"}>
         <button>CADASTRAR-SE</button>
       </Link>
+      <Link to={"/novasenha"}>
+        <button>Nova Senha</button>
+      </Link>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { PerfilScreen } from "../screens/profile/profile.screen";
 import { AlterUserScreen } from "../screens/alterar/alterar.screen";
 
 import { PrivateRoute } from "./private-route.component";
+import { NovaSenhaScreen } from "../screens/novasenha/novasenha.screen";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
   {
     path: "/cadastro",
     element: <CadastroScreen />,
+  },
+  {
+    path: "/novasenha",
+    element: <NovaSenhaScreen />
   },
   {
     path: "/perfil",
